@@ -10,7 +10,7 @@ class App extends Component {
       { name: "Nathan" , age: 15}
     ],
     someOtherState: "some other value",
-    showPerson : false
+    showPerson : true
   } 
 
   switchNameHandler = (newName) => {
@@ -36,6 +36,11 @@ class App extends Component {
         { name: "Nathan" , age: 15}
       ]
     } )
+  }
+
+  showPersonHandler = () => {
+    let locShowPerson = this.state.showPerson;
+    this.setState({showPerson : !locShowPerson});
 
   }
   
@@ -56,7 +61,7 @@ class App extends Component {
           <p>This is realy working</p>
           <button 
             style={myStyle}
-            onClick={this.switchNameHandler.bind(this, "EersteMarnix")} 
+            onClick={this.showPersonHandler} 
             >Switch Name
           </button>
           { this.state.showPerson ?
