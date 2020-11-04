@@ -9,8 +9,8 @@ class App extends Component {
       { name: "Viginie" , age: 43},
       { name: "Nathan" , age: 15}
     ],
-    someOtherState: "some other value"
-
+    someOtherState: "some other value",
+    showPerson : false
   } 
 
   switchNameHandler = (newName) => {
@@ -41,24 +41,40 @@ class App extends Component {
   
 
   render() {
+    const myStyle = {
+      backgroundColor : 'White',
+      font: 'inherit',
+      border: '10px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <p></p>
           <h1>Hello I am marnix en new react developer</h1>
           <p>This is realy working</p>
-          <button onClick={this.switchNameHandler.bind(this, "EersteMarnix")} >Switch Name</button>
-          <Person 
-            name={this.state.persons[0].name}  
-            age={this.state.persons[0].age}/>
-          <Person 
-            name={this.state.persons[1].name}  
-            age={this.state.persons[1].age}
-            click= {this.switchNameHandler.bind(this, "tweede marnix")}
-            changeName = {this.changeNameHandler}/>
-          <Person 
-            name={this.state.persons[2].name}  
-            age={this.state.persons[2].age}
-            >dit is mijn zoon</Person>
+          <button 
+            style={myStyle}
+            onClick={this.switchNameHandler.bind(this, "EersteMarnix")} 
+            >Switch Name
+          </button>
+          { this.state.showPerson ?
+            <div>
+              <Person 
+                name={this.state.persons[0].name}  
+                age={this.state.persons[0].age}/>
+              <Person 
+                name={this.state.persons[1].name}  
+                age={this.state.persons[1].age}
+                click= {this.switchNameHandler.bind(this, "tweede marnix")}
+                changeName = {this.changeNameHandler}/>
+              <Person 
+                name={this.state.persons[2].name}  
+                age={this.state.persons[2].age}
+                >dit is mijn zoon</Person>
+            </div> : null
+          }
       </div>
     );
   }
