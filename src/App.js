@@ -32,7 +32,20 @@ class App extends Component {
   }
   
 deletePersonHandler = (personIndex) => {
-  const locPersons = this.state.persons;
+  //locPerson wordt een kopie van de pointer
+  //als we dan de splice functie toepassen doen we dat in feite
+  //met de originele state.person, wat in feite niet mag
+  //state.person mag maar worde aangepast door de setState methode
+  //Het is dus beter een kopie te maken van het origineel
+  //Hieronder twee voorbeelden om dit te doen
+
+  // const locPersons = this.state.persons; dit was het origineel
+
+  //eerste manier, door splice() toe te passen maken we een kopie
+  //const locPersons = this.state.persons.splice();
+
+  //een nieuwere manier is met ... instructor. Dit neemt de volledige array
+  const locPersons = [...this.state.persons];
   locPersons.splice(personIndex,1);
   this.setState({persons : locPersons});
 
