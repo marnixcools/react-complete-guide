@@ -5,24 +5,32 @@ import './App.css';
 class App extends Component {
   state = {
     persons: [
-      { name: "Marnix" , age: 55},
-      { name: "Viginie" , age: 43},
-      { name: "Nathan" , age: 15}
+      {id : 'qfmq' ,name: "Marnix" , age: 55},
+      {id : 'pmmj' ,name: "Viginie" , age: 43},
+      {id : 'fdsf' ,name: "Nathan" , age: 15}
     ],
     someOtherState: "some other value",
     showPerson : true
   } 
 
-  changeNameHandler = (event) => {
-    //console.log("hallo daar")
-    //DO NOT USE THIS this.state.persons[0].name = "PAPA";
-    this.setState({
-      persons: [
-        { id:'fdsf' ,name: "Marnix", age: 55},
-        { id:'qfmq' ,name:  event.target.value, age: 43},
-        { id:'pmmj' ,name: "Nathan" , age: 15}
-      ]
-    } )
+  changeNameHandler = (event, id) => {
+    //first we search the index of the element
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    })
+    //we may not change the original so we make a copie
+    //of the found person
+    const locPerson = {
+      ...this.state.persons[personIndex]
+    };
+    //then we change the name
+    locPerson.name = event.target.value;
+    //Now to we change the Persons object
+    //but first we make a copie
+    const locPersons = [...this.state.persons];
+    locPersons[personIndex] = locPerson;
+    //Now we change the state
+    this.setState({persons : locPersons});
   }
 
   showPersonHandler = () => {
@@ -63,13 +71,13 @@ deletePersonHandler = (personIndex) => {
     if (this.state.showPerson) {
       locPersons = (
         <div>
-          {
-            this.state.persons.map((elPerson, index) => {
+          {this.state.persons.map((elPerson, index) => {
               return <Person
                 click = {() => this.deletePersonHandler(index)}
                 name={elPerson.name}
                 age={elPerson.age}
-                id={elPerson.id/>
+                key={elPerson.id}
+                changeName={(event) => this.changeNameHandler(event, elPerson.id)}/>
               }
             )
         }  
