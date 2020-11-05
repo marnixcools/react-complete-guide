@@ -18,9 +18,9 @@ class App extends Component {
     //DO NOT USE THIS this.state.persons[0].name = "PAPA";
     this.setState({
       persons: [
-        { name: "Marnix", age: 55},
-        { name:  event.target.value, age: 43},
-        { name: "Nathan" , age: 15}
+        { id:'fdsf' ,name: "Marnix", age: 55},
+        { id:'qfmq' ,name:  event.target.value, age: 43},
+        { id:'pmmj' ,name: "Nathan" , age: 15}
       ]
     } )
   }
@@ -68,7 +68,8 @@ deletePersonHandler = (personIndex) => {
               return <Person
                 click = {() => this.deletePersonHandler(index)}
                 name={elPerson.name}
-                age={elPerson.age}/>
+                age={elPerson.age}
+                id={elPerson.id/>
               }
             )
         }  
