@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Person from './Person/Person.js';
 import './App.css';
+//radium is a package to add some extra styling 
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -60,11 +62,16 @@ deletePersonHandler = (personIndex) => {
 }
   render() {
     const myStyle = {
-      backgroundColor : 'White',
+      backgroundColor : 'green',
+      Color : 'White',
       font: 'inherit',
-      border: '10px solid blue',
+      border: '2px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let locPersons = null;
@@ -80,25 +87,42 @@ deletePersonHandler = (personIndex) => {
                 changeName={(event) => this.changeNameHandler(event, elPerson.id)}/>
               }
             )
+
         }  
         </div>
       )
+      myStyle.backgroundColor = 'Red';
+      myStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
+    const classes = [];
+    if (this.state.persons.length <=2){
+      classes.push('red');// classes = ['red']
+    }
+
+    if (this.state.persons.length <=1){
+      classes.push('bold');// classes = ['red','bold']
+    }
     return (
-      <div className="App">
-        <p></p>
-          <h1>Hello I am marnix en new react developer</h1>
-          <p>This is realy working</p>
-          <button 
-            style={myStyle}
-            onClick={this.showPersonHandler} 
-            >toggle person
-          </button>
-          {locPersons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <p></p>
+            <h1>Hello I am marnix en new react developer</h1>
+            <p className = {classes.join(' ')}> This is realy working</p>
+            <button 
+              style={myStyle}
+              onClick={this.showPersonHandler} 
+              >toggle person
+            </button>
+            {locPersons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+//Radium gaat onze app bewerken zodat we met pseudo style command kan werken
+export default Radium(App);
