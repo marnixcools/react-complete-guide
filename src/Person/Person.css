@@ -7,10 +7,8 @@
     text-align: center;
 }
 
-/*dit werk ook maar we gebruiken hier radium
 @media (min-width: 700px){
     .Person {
         width: 450px;
     }
 }
-*/

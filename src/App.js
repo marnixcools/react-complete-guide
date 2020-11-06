@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person.js';
-import './App.css';
+import classes from './App.css';
 
 
 class App extends Component {
@@ -61,6 +61,7 @@ deletePersonHandler = (personIndex) => {
 }
   render() {
     let locPersons = null;
+    let btnClass = '';
     if (this.state.showPerson) {
       locPersons = (
         <div>
@@ -77,22 +78,25 @@ deletePersonHandler = (personIndex) => {
         }  
         </div>
       )
+
+      btnClass = classes.Red;
     }
 
-    const classes = [];
+    const assingedClasses = [];
     if (this.state.persons.length <=2){
-      classes.push('red');// classes = ['red']
+      assingedClasses.push(classes.red);// classes = ['red']
     }
 
     if (this.state.persons.length <=1){
-      classes.push('bold');// classes = ['red','bold']
+      assingedClasses.push(classes.bold);// classes = ['red','bold']
     }
     return (
-        <div className="App">
+        <div className={classes.App}>
           <p></p>
-            <h1>Hello I am marnix en new react developer</h1>
-            <p className = {classes.join(' ')}> This is realy working</p>
+            <h1>Hello I am marnix a new react developer</h1>
+            <p className = {assingedClasses.join(' ')}> This is realy working</p>
             <button 
+              className={btnClass}
               onClick={this.showPersonHandler}> 
                 toggle person
             </button>
