@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import Person from './Person/Person.js';
 import './App.css';
-//radium is a package to add some extra styling 
-import Radium, {StyleRoot} from 'radium';
+import styled from 'styled-components';
+
+//In the styled.button gebruiken we gewonde CSS-words
+const StyledButton = styled.button`
+  background-color : ${props => props.alt ? 'red' : 'green'};
+  color : White;
+  font: inherit;
+  border: 2px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -61,18 +75,18 @@ deletePersonHandler = (personIndex) => {
 
 }
   render() {
-    const myStyle = {
-      backgroundColor : 'green',
-      Color : 'White',
-      font: 'inherit',
-      border: '2px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    // const myStyle = {
+    //   backgroundColor : 'green',
+    //   Color : 'White',
+    //   font: 'inherit',
+    //   border: '2px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
+    // };
 
     let locPersons = null;
     if (this.state.showPerson) {
@@ -91,11 +105,10 @@ deletePersonHandler = (personIndex) => {
         }  
         </div>
       )
-      myStyle.backgroundColor = 'Red';
-      myStyle[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      //  myStyle.backgroundColor = 'Red';
+      // myStyle[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
     }
 
     const classes = [];
@@ -107,22 +120,20 @@ deletePersonHandler = (personIndex) => {
       classes.push('bold');// classes = ['red','bold']
     }
     return (
-      <StyleRoot>
         <div className="App">
           <p></p>
             <h1>Hello I am marnix en new react developer</h1>
             <p className = {classes.join(' ')}> This is realy working</p>
-            <button 
-              style={myStyle}
-              onClick={this.showPersonHandler} 
-              >toggle person
-            </button>
+            <StyledButton 
+              alt={this.state.showPerson}
+              onClick={this.showPersonHandler}> 
+                toggle person
+            </StyledButton>
             {locPersons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
 //Radium gaat onze app bewerken zodat we met pseudo style command kan werken
-export default Radium(App);
+export default (App);
