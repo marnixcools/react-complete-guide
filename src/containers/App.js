@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Person from '../components/Persons/Person/Person.js';
+import Persons from '../components/Persons/Persons';
 import classes from './App.css';
 
 
@@ -65,7 +65,12 @@ deletePersonHandler = (personIndex) => {
     if (this.state.showPerson) {
       locPersons = (
         <div>
-          {this.state.persons.map((elPerson, index) => {
+          <Persons
+          persons= {this.state.persons}
+          clicked = {this.deletePersonHandler}
+          changed = {this.changeNameHandler}
+          />
+          {/* {this.state.persons.map((elPerson, index) => {
               return <Person
                 click = {() => this.deletePersonHandler(index)}
                 name={elPerson.name}
@@ -75,7 +80,7 @@ deletePersonHandler = (personIndex) => {
               }
             )
 
-        }  
+        }   */}
         </div>
       )
 
