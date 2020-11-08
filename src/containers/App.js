@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import classes from './App.css';
 
 
@@ -59,52 +60,26 @@ deletePersonHandler = (personIndex) => {
   this.setState({persons : locPersons});
 
 }
-  render() {
+
+render() {
     let locPersons = null;
-    let btnClass = '';
     if (this.state.showPerson) {
-      locPersons = (
-        <div>
+      locPersons = 
           <Persons
-          persons= {this.state.persons}
-          clicked = {this.deletePersonHandler}
-          changed = {this.changeNameHandler}
+            persons= {this.state.persons}
+            showPerson = {this.state.showPerson}
+            clicked = {this.deletePersonHandler}
+            changed = {this.changeNameHandler}
           />
-          {/* {this.state.persons.map((elPerson, index) => {
-              return <Person
-                click = {() => this.deletePersonHandler(index)}
-                name={elPerson.name}
-                age={elPerson.age}
-                key={elPerson.id}
-                changeName={(event) => this.changeNameHandler(event, elPerson.id)}/>
-              }
-            )
-
-        }   */}
-        </div>
-      )
-
-      btnClass = classes.Red;
+      
     }
 
-    const assingedClasses = [];
-    if (this.state.persons.length <=2){
-      assingedClasses.push(classes.red);// classes = ['red']
-    }
-
-    if (this.state.persons.length <=1){
-      assingedClasses.push(classes.bold);// classes = ['red','bold']
-    }
-    return (
+     return (
         <div className={classes.App}>
           <p></p>
-            <h1>Hello I am marnix a new react developer</h1>
-            <p className = {assingedClasses.join(' ')}> This is realy working</p>
-            <button 
-              className={btnClass}
-              onClick={this.showPersonHandler}> 
-                toggle person
-            </button>
+            <Cockpit 
+              persons={this.state.persons}
+              clicked={this.showPersonHandler}/>
             {locPersons}
         </div>
     );
