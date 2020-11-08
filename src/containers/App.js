@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Person from './Person/Person.js';
+import Person from '../components/Persons/Person/Person.js';
 import classes from './App.css';
 
 
