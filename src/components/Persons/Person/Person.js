@@ -7,7 +7,7 @@ const person = (props) => {
     //@mdia kan hier worden gebruikt omdat
     //we radium hebben geinstalleerd
     //LET OP : in de app moeten we de alles tussen RootStyle plaatsen
-
+console.log('[person.js] render');
 return  <div className={classes.Person}>
             <p onClick={props.click}>I'm {props.name} and i am {props.age} years old'</p>
             <p>{props.children}</p>
