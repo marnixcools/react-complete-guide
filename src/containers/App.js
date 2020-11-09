@@ -78,6 +78,7 @@ render() {
         <div className={classes.App}>
           <p></p>
             <Cockpit 
+              title={this.props.AppTitle}
               persons={this.state.persons}
               clicked={this.showPersonHandler}/>
             {locPersons}
