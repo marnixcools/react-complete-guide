@@ -1,7 +1,7 @@
 {
   "name": "react-complete-guide",
-  "homepage": "https://github.com/marnixcools/react-complete-guide.git",
-  "version": "0.2.0",
+  "homepage": "http://github.com/marnixcools/react-complete-guide.git",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
