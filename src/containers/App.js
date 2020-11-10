@@ -95,7 +95,8 @@ render() {
             <Cockpit 
               title={this.props.AppTitle}
               persons={this.state.persons}
-              clicked={this.showPersonHandler}/>
+              clicked={this.showPersonHandler}
+              showPerson={this.state.showPerson}/>
             {locPersons}
         </div>
     );

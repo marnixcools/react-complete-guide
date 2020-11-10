@@ -4,9 +4,8 @@ import classes from './Cockpit.css';
 const cockpit = (props) => {
 
     let btnClass = '';
-
     if (props.showPerson){
-        btnClass = 'Red';
+        btnClass = classes.Red;
     }
 
     
